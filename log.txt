@@ -1,4 +1,12 @@
-2022-09-24 19:54:19 [JavaFX Application Thread] JavaFXApp.start()
+2022-09-24 23:17:03 [JavaFX Application Thread] JavaFXApp.start()
 INFO: The application has launched
-2022-09-24 19:54:21 [JavaFX Application Thread] JavaFXApp.stop()
+2022-09-24 23:17:05 [JavaFX Application Thread] Controller.MenuController.settingsAction()
+INFO: The player has pressed the settings button
+2022-09-24 23:17:05 [JavaFX Application Thread] Controller.MenuController.backAction()
+INFO: The player has returned to the main menu
+2022-09-24 23:17:06 [JavaFX Application Thread] Controller.MenuController.settingsAction()
+INFO: The player has pressed the settings button
+2022-09-24 23:17:07 [JavaFX Application Thread] Controller.MenuController.backAction()
+INFO: The player has returned to the main menu
+2022-09-24 23:17:07 [JavaFX Application Thread] Controller.MenuController.quitGameAction()
 INFO: The player has quit the game
