@@ -1,0 +1,4 @@
+2022-09-24 19:54:19 [JavaFX Application Thread] JavaFXApp.start()
+INFO: The application has launched
+2022-09-24 19:54:21 [JavaFX Application Thread] JavaFXApp.stop()
+INFO: The player has quit the game

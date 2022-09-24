@@ -4,9 +4,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.tinylog.Logger;
+
 public class JavaFXApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println("The application has launched");
+        Logger.info("The application has launched");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLs/Menu.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root, 600, 600);
+        stage.setTitle("Tic-Tac-Toe");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        Logger.info("The player has quit the game");
     }
 }
