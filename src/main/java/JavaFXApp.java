@@ -1,3 +1,4 @@
+import Controller.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,8 @@ public class JavaFXApp extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+
+
     }
 
     @Override

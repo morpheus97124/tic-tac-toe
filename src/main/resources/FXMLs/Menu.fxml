@@ -44,47 +44,40 @@
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
                <children>
-                  <Label contentDisplay="CENTER" text="Grid size:" textAlignment="CENTER">
+                  <Label fx:id="gridSizeLabel" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" text="Grid size:" textAlignment="CENTER">
                      <font>
                         <Font size="25.0" />
                      </font>
                      <HBox.margin>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                      </HBox.margin>
                   </Label>
-                  <VBox>
-                     <children>
-                        <ScrollBar />
-                        <Label text="Label" />
-                     </children>
+                  <Spinner fx:id="gridSizeXSpinner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <HBox.margin>
-                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox>
+                        <Insets bottom="75.0" left="50.0" right="50.0" top="75.0" />
+                     </HBox.margin></Spinner>
+                  <Spinner fx:id="gridSizeYSpinner" layoutX="211.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
                      <HBox.margin>
-                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                     </HBox.margin>
-                     <children>
-                        <ScrollBar />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
+                        <Insets bottom="75.0" left="50.0" right="50.0" top="75.0" />
+                     </HBox.margin></Spinner>
                </children>
             </HBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="easyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Easy">
+                  <Button fx:id="easyButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#easyAction" prefHeight="100.0" prefWidth="100.0" text="Easy">
                      <HBox.margin>
                         <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mediumButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Medium">
+                  <Button fx:id="mediumButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mediumAction" prefHeight="100.0" prefWidth="100.0" text="Medium">
                      <HBox.margin>
                         <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="hardButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Hard">
+                  <Button fx:id="hardButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#hardAction" prefHeight="100.0" prefWidth="100.0" text="Hard">
                      <HBox.margin>
                         <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                      </HBox.margin>

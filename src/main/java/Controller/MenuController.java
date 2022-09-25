@@ -3,17 +3,9 @@ package Controller;
 
 import javafx.fxml.FXML;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.tinylog.Logger;
-import java.awt.event.ActionEvent;
-
 
 
 public class MenuController {
@@ -29,6 +21,31 @@ public class MenuController {
 
     @FXML
     private VBox settingsItems;
+
+    @FXML
+    private Spinner gridSizeXSpinner;
+
+    @FXML
+    private Spinner gridSizeYSpinner;
+
+    @FXML
+    private Button easyButton;
+
+    @FXML
+    private Button mediumButton;
+
+    @FXML
+    private Button hardButton;
+
+    GameSettings gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, 3 ,3);
+
+    @FXML
+    public void initialize(){
+        SpinnerValueFactory<Integer>spinnerValueFactoryX = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
+        SpinnerValueFactory<Integer>spinnerValueFactoryY = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
+        gridSizeXSpinner.setValueFactory(spinnerValueFactoryX);
+        gridSizeYSpinner.setValueFactory(spinnerValueFactoryY);
+    }
 
     @FXML
     private void quitGameAction(){
@@ -53,6 +70,36 @@ public class MenuController {
     @FXML
     private void backAction(){
         Logger.info("The player has returned to the main menu");
+        Logger.info("New game settings are: \n" + gameSettings);
+        gameSettings.setGridSizeX((Integer) gridSizeXSpinner.getValue());
+        gameSettings.setGridSizeY((Integer) gridSizeYSpinner.getValue());
         switchVBoxes(settingsItems, menuItems);
+
+        Logger.info("The player has returned to the main menu");
+        Logger.info("New game settings are: \n" + gameSettings);
+    }
+
+    @FXML
+    private void easyAction(){
+        gameSettings.setDifficultyLevel(GameSettings.DifficultyLevel.EASY);
+        easyButton.setDisable(true);
+        mediumButton.setDisable(false);
+        hardButton.setDisable(false);
+    }
+
+    @FXML
+    private void mediumAction(){
+        gameSettings.setDifficultyLevel(GameSettings.DifficultyLevel.MEDIUM);
+        easyButton.setDisable(false);
+        mediumButton.setDisable(true);
+        hardButton.setDisable(false);
+    }
+
+    @FXML
+    private void hardAction(){
+        gameSettings.setDifficultyLevel(GameSettings.DifficultyLevel.HARD);
+        easyButton.setDisable(false);
+        mediumButton.setDisable(false);
+        hardButton.setDisable(true);
     }
 }

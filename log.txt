@@ -1,12 +1,18 @@
-2022-09-24 23:17:03 [JavaFX Application Thread] JavaFXApp.start()
+2022-09-25 16:00:23 [JavaFX Application Thread] JavaFXApp.start()
 INFO: The application has launched
-2022-09-24 23:17:05 [JavaFX Application Thread] Controller.MenuController.settingsAction()
+2022-09-25 16:00:25 [JavaFX Application Thread] Controller.MenuController.settingsAction()
 INFO: The player has pressed the settings button
-2022-09-24 23:17:05 [JavaFX Application Thread] Controller.MenuController.backAction()
+2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
 INFO: The player has returned to the main menu
-2022-09-24 23:17:06 [JavaFX Application Thread] Controller.MenuController.settingsAction()
-INFO: The player has pressed the settings button
-2022-09-24 23:17:07 [JavaFX Application Thread] Controller.MenuController.backAction()
+2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
+INFO: New game settings are: 
+Game difficulty HARD
+Grid size: 3x3
+2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
 INFO: The player has returned to the main menu
-2022-09-24 23:17:07 [JavaFX Application Thread] Controller.MenuController.quitGameAction()
+2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
+INFO: New game settings are: 
+Game difficulty HARD
+Grid size: 8x8
+2022-09-25 16:00:38 [JavaFX Application Thread] Controller.MenuController.quitGameAction()
 INFO: The player has quit the game
