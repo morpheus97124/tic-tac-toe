@@ -1,18 +1,19 @@
-2022-09-25 16:00:23 [JavaFX Application Thread] JavaFXApp.start()
+2022-09-26 23:41:21 [JavaFX Application Thread] JavaFXApp.start()
 INFO: The application has launched
-2022-09-25 16:00:25 [JavaFX Application Thread] Controller.MenuController.settingsAction()
-INFO: The player has pressed the settings button
-2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
-INFO: The player has returned to the main menu
-2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
-INFO: New game settings are: 
-Game difficulty HARD
-Grid size: 3x3
-2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
-INFO: The player has returned to the main menu
-2022-09-25 16:00:30 [JavaFX Application Thread] Controller.MenuController.backAction()
-INFO: New game settings are: 
-Game difficulty HARD
-Grid size: 8x8
-2022-09-25 16:00:38 [JavaFX Application Thread] Controller.MenuController.quitGameAction()
+2022-09-26 23:41:22 [JavaFX Application Thread] Model.Grid.<init>()
+INFO: Grid is created
+Size of the grid is: 3x3
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+Content: EMPTY
+
+2022-09-26 23:41:22 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [0,2]
+2022-09-26 23:41:29 [JavaFX Application Thread] JavaFXApp.stop()
 INFO: The player has quit the game

@@ -6,13 +6,11 @@ public class GameSettings {
     }
 
     private DifficultyLevel difficultyLevel;
-    private int gridSizeX;
-    private int gridSizeY;
+    private int gridSize;
 
-    public GameSettings(DifficultyLevel difficultyLevel, int gridSizeX, int gridSizeY) {
+    public GameSettings(DifficultyLevel difficultyLevel, int gridSize) {
         this.difficultyLevel = difficultyLevel;
-        this.gridSizeX = gridSizeX;
-        this.gridSizeY = gridSizeY;
+        this.gridSize = gridSize;
     }
 
     public DifficultyLevel getDifficultyLevel() {
@@ -23,24 +21,16 @@ public class GameSettings {
         this.difficultyLevel = difficultyLevel;
     }
 
-    public int getGridSizeX() {
-        return gridSizeX;
+    public int getGridSize() {
+        return gridSize;
     }
 
-    public void setGridSizeX(int gridSizeX) {
-        this.gridSizeX = gridSizeX;
-    }
-
-    public int getGridSizeY() {
-        return gridSizeY;
-    }
-
-    public void setGridSizeY(int gridSizeY) {
-        this.gridSizeY = gridSizeY;
+    public void setGridSize(int gridSize) {
+        this.gridSize = gridSize;
     }
 
     public String toString(){
         return "Game difficulty " + this.difficultyLevel
-        + "\nGrid size: " + this.gridSizeX + "x" + this.gridSizeY;
+        + "\nGrid size: " + this.gridSize + "x" + this.gridSize;
     }
 }

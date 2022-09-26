@@ -1,14 +1,34 @@
 package Controller;
 
 
+import Model.Grid;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.transform.Rotate;
+import javafx.util.Pair;
 import org.tinylog.Logger;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MenuController {
+
+    @FXML
+    private Pane menuPane;
+
+    @FXML
+    private Pane gamePane;
 
     @FXML
     private Button settingsButton;
@@ -23,10 +43,7 @@ public class MenuController {
     private VBox settingsItems;
 
     @FXML
-    private Spinner gridSizeXSpinner;
-
-    @FXML
-    private Spinner gridSizeYSpinner;
+    private Spinner gridSizeSpinner;
 
     @FXML
     private Button easyButton;
@@ -37,14 +54,57 @@ public class MenuController {
     @FXML
     private Button hardButton;
 
-    GameSettings gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, 3 ,3);
+    @FXML
+    private GridPane gameGrid;
+
+    @FXML
+    private ImageView tmpimgview;
+
+    GameSettings gameSettings;
+
+    Map<String,ImageView> imageViewMap = new HashMap<>();
+
+    Image oImage = new Image("/Pictures/o.png");
+    Image xImage = new Image("/Pictures/x.png");
 
     @FXML
     public void initialize(){
-        SpinnerValueFactory<Integer>spinnerValueFactoryX = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
-        SpinnerValueFactory<Integer>spinnerValueFactoryY = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
-        gridSizeXSpinner.setValueFactory(spinnerValueFactoryX);
-        gridSizeYSpinner.setValueFactory(spinnerValueFactoryY);
+        menuPane.setDisable(false);
+        gamePane.setDisable(true);
+        SpinnerValueFactory<Integer>spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
+        gridSizeSpinner.setValueFactory(spinnerValueFactory);
+        gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, 3);
+
+        tmpimgview.setOnMouseClicked(new EventHandler<>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                tmpimgview.setImage(oImage);
+            }
+        });
+    }
+
+    @FXML
+    private void newGameAction(){
+        menuPane.setVisible(false);
+        gamePane.setVisible(true);
+        gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, (Integer) gridSizeSpinner.getValue());
+        Grid grid = new Grid(gameSettings.getGridSize());
+        setUpGrid();
+
+        for(String string : imageViewMap.keySet()){
+            imageViewMap.get(string).setOnMouseClicked(new EventHandler<>(){
+
+                @Override
+                public void handle(MouseEvent event) {
+                    imageViewMap.get(string).setImage(xImage);
+                }
+            });
+        }
+
+
+
+
     }
 
     @FXML
@@ -71,8 +131,7 @@ public class MenuController {
     private void backAction(){
         Logger.info("The player has returned to the main menu");
         Logger.info("New game settings are: \n" + gameSettings);
-        gameSettings.setGridSizeX((Integer) gridSizeXSpinner.getValue());
-        gameSettings.setGridSizeY((Integer) gridSizeYSpinner.getValue());
+        gameSettings.setGridSize((Integer) gridSizeSpinner.getValue());
         switchVBoxes(settingsItems, menuItems);
 
         Logger.info("The player has returned to the main menu");
@@ -102,4 +161,69 @@ public class MenuController {
         mediumButton.setDisable(false);
         hardButton.setDisable(true);
     }
+
+
+    public void setCell(int id, Image image){
+        Pair<Integer,Integer> coordinate = Grid.convertIdToCoordinate(id,gameSettings.getGridSize());
+        System.out.println(coordinate);
+        int y = coordinate.getKey();
+        int x = coordinate.getValue();
+        String nameString = String.format("iv%d",id);
+        for(String string : imageViewMap.keySet()){
+            if(string.equals(nameString)){
+                imageViewMap.get(string).setImage(image);
+            }
+        }
+        Logger.info(String.format("Cell has been updated at [%d,%d]",x,y));
+    }
+
+    private void setUpGrid(){
+
+        int maxSize = 600;
+        int cellSize = maxSize/gameSettings.getGridSize();
+
+        gameGrid.getRowConstraints().set(0,new RowConstraints(cellSize));
+        for(int i=0;i<gameSettings.getGridSize()-1;i++){
+            RowConstraints rowConstraints = new RowConstraints(cellSize);
+            gameGrid.getRowConstraints().add(rowConstraints);
+        }
+        for(int j=0;j<gameSettings.getGridSize();j++){
+            ColumnConstraints columnConstraints = new ColumnConstraints(cellSize);
+            gameGrid.getColumnConstraints().add(columnConstraints);
+        }
+        int num = 0;
+        for(int i = gameSettings.getGridSize()-1;i> -1;i--){
+            for(int j = 0;j< gameSettings.getGridSize();j++){
+                String ivKey = String.format("iv%d",num);
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(cellSize);
+                imageView.setFitHeight(cellSize);
+                imageViewMap.put(ivKey,imageView);
+
+                //TEMPORARY CODE STARTS //DOESNT WORK FOR SOME REASON
+                imageViewMap.get(ivKey).setPickOnBounds(true);
+                imageViewMap.get(ivKey).setOnMouseClicked(new EventHandler<>(){
+                    @Override
+                    public void handle(MouseEvent event) {
+                        imageViewMap.get(ivKey).setImage(xImage);
+                    }
+                });
+                //TEMPORARY CODE END
+
+                gameGrid.add(imageViewMap.get(ivKey),j,i);//(elem, col, row)
+                num++;
+                //Logger.info(String.format("ImageView added to the grid at [%d,%d]",j,i));
+            }
+        }
+        setCell(0,oImage);
+        /*setCell(1,xImage);
+        setCell(2,oImage);
+        setCell(3,xImage);
+        setCell(4,oImage);
+        setCell(5,xImage);
+        setCell(6,oImage);
+        setCell(7,xImage);*/
+
+    }
+
 }

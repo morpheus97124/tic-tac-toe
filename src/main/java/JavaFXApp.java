@@ -16,10 +16,8 @@ public class JavaFXApp extends Application {
         Scene scene = new Scene(root, 600, 600);
         stage.setTitle("Tic-Tac-Toe");
         stage.setScene(scene);
-        stage.setResizable(false);
+        //stage.setResizable(false);
         stage.show();
-
-
     }
 
     @Override

@@ -6,90 +6,112 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<Pane fx:id="root" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Pictures/Tic-tac-toe.png" />
-         </image>
-      </ImageView>
-      <VBox fx:id="menuItems" alignment="TOP_CENTER" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0">
+      <Pane fx:id="menuPane">
          <children>
-            <Button fx:id="newGameButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="New Game" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#settingsAction" prefHeight="100.0" prefWidth="100.0" text="Settings" textAlignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="quitGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#quitGameAction" prefHeight="100.0" prefWidth="100.0" text="Quit Game" textAlignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <VBox fx:id="settingsItems" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" visible="false">
-         <children>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
+            <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/Tic-tac-toe.png" />
+               </image>
+            </ImageView>
+            <VBox fx:id="menuItems" alignment="TOP_CENTER" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="gridSizeLabel" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" text="Grid size:" textAlignment="CENTER">
+                  <Button fx:id="newGameButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newGameAction" prefHeight="100.0" prefWidth="100.0" text="New Game" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
                      <font>
-                        <Font size="25.0" />
+                        <Font size="14.0" />
                      </font>
-                     <HBox.margin>
+                  </Button>
+                  <Button fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#settingsAction" prefHeight="100.0" prefWidth="100.0" text="Settings" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
                         <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Spinner fx:id="gridSizeXSpinner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <HBox.margin>
-                        <Insets bottom="75.0" left="50.0" right="50.0" top="75.0" />
-                     </HBox.margin></Spinner>
-                  <Spinner fx:id="gridSizeYSpinner" layoutX="211.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
-                     <HBox.margin>
-                        <Insets bottom="75.0" left="50.0" right="50.0" top="75.0" />
-                     </HBox.margin></Spinner>
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="quitGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#quitGameAction" prefHeight="100.0" prefWidth="100.0" text="Quit Game" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
-            </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
+            </VBox>
+            <VBox fx:id="settingsItems" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" visible="false">
                <children>
-                  <Button fx:id="easyButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#easyAction" prefHeight="100.0" prefWidth="100.0" text="Easy">
-                     <HBox.margin>
-                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="mediumButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mediumAction" prefHeight="100.0" prefWidth="100.0" text="Medium">
-                     <HBox.margin>
-                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="hardButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#hardAction" prefHeight="100.0" prefWidth="100.0" text="Hard">
-                     <HBox.margin>
-                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                     </HBox.margin>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
+                     <children>
+                        <Label fx:id="gridSizeLabel" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" text="Grid size:" textAlignment="CENTER">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Spinner fx:id="gridSizeSpinner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets bottom="75.0" left="50.0" right="50.0" top="75.0" />
+                           </HBox.margin>
+                        </Spinner>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
+                     <children>
+                        <Button fx:id="easyButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#easyAction" prefHeight="100.0" prefWidth="100.0" text="Easy">
+                           <HBox.margin>
+                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="mediumButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mediumAction" prefHeight="100.0" prefWidth="100.0" text="Medium">
+                           <HBox.margin>
+                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="hardButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#hardAction" prefHeight="100.0" prefWidth="100.0" text="Hard">
+                           <HBox.margin>
+                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backAction" prefHeight="100.0" prefWidth="100.0" text="Back">
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="250.0" right="250.0" top="50.0" />
+                     </VBox.margin>
                   </Button>
                </children>
-            </HBox>
-            <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backAction" prefHeight="100.0" prefWidth="100.0" text="Back">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="250.0" right="250.0" top="50.0" />
-               </VBox.margin>
-            </Button>
+            </VBox>
          </children>
-      </VBox>
+      </Pane>
+      <Pane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" visible="false">
+         <children>
+            <GridPane fx:id="gameGrid" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="tmpimgview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </GridPane>
    </children>
 </Pane>
