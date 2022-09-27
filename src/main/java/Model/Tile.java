@@ -2,7 +2,7 @@ package Model;
 
 public class Tile {
     public enum TileContent{
-        EMPTY, X, O;
+        EMPTY, X, O, BORDER;
     }
 
     private TileContent tileContent;

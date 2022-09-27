@@ -1,6 +1,6 @@
-2022-09-26 23:41:21 [JavaFX Application Thread] JavaFXApp.start()
+2022-09-28 01:09:47 [JavaFX Application Thread] JavaFXApp.start()
 INFO: The application has launched
-2022-09-26 23:41:22 [JavaFX Application Thread] Model.Grid.<init>()
+2022-09-28 01:09:48 [JavaFX Application Thread] Model.Grid.<init>()
 INFO: Grid is created
 Size of the grid is: 3x3
 Content: EMPTY
@@ -13,7 +13,7 @@ Content: EMPTY
 Content: EMPTY
 Content: EMPTY
 
-2022-09-26 23:41:22 [JavaFX Application Thread] Controller.MenuController.setCell()
+2022-09-28 01:09:48 [JavaFX Application Thread] Controller.MenuController.setCell()
 INFO: Cell has been updated at [0,2]
-2022-09-26 23:41:29 [JavaFX Application Thread] JavaFXApp.stop()
+2022-09-28 01:10:20 [JavaFX Application Thread] JavaFXApp.stop()
 INFO: The player has quit the game

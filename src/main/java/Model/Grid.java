@@ -33,11 +33,122 @@ public class Grid {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Size of the grid is: " + this.n + "x" + this.n + "\n");
-        for (Tile tile:
-             grid) {
+        for (Tile tile : this.grid) {
             sb.append(tile);
         }
         return sb.toString();
     }
-    
+
+    public boolean isThereMatch(int target){
+        //be kéne járni a gridet bal alsó sarokból-n borderrel
+        //minden not empty cella esetében megvizsgálni a négy directiont
+        //ha nincs meg továbmenni
+        //ha megvan kilépni
+        for(int i = 0; i < this.grid.length;i++){
+        //for(Tile tile : this.grid){//bejárni a gridet
+            //bejárni a vízszintesen
+            //bejárni függőlegesen
+            //bejárni így \
+            //bejárni így /
+            Tile.TileContent currentTileContent = null;
+            if(this.grid[i].getTileContent() == Tile.TileContent.O){
+                currentTileContent = Tile.TileContent.O;
+            }
+            else if(this.grid[i].getTileContent() == Tile.TileContent.X){
+                currentTileContent = Tile.TileContent.X;
+            }
+            else{
+                continue;
+            }
+            //vízszintesen
+            int count = 1;
+            while(whoRight(i)== currentTileContent){
+                count++;
+                if(count >= target){
+                    return true;
+                }
+            }
+            //függőlegesen
+            count = 1;
+            while(whoTop(i)==currentTileContent){
+                count++;
+                if(count >= target){
+                    return true;
+                }
+            }
+            //ha így van \
+            count = 1;
+            while(whoTopLeft(i)==currentTileContent){
+                count++;
+                if(count >= target){
+                    return true;
+                }
+            }
+            //ha így van /
+            count = 1;
+            while(whoTopRight(i)==currentTileContent){
+                count++;
+                if(count >= target){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //Functions for returning the types of neighboring tiles
+    public Tile.TileContent whoLeft(int id){
+        if(id%this.n==0) {//Tile is at the far left side
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id-1].getTileContent();
+    }
+    public Tile.TileContent whoRight(int id){
+        if(id%this.n==(this.n-1)){
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id+1].getTileContent();
+    }
+    public Tile.TileContent whoTop(int id){
+        if(id/this.n==this.n-1){
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id+this.n].getTileContent();
+    }
+    /*public Tile.TileContent whoBottom(int id){
+        if(id/n==0){
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id-this.n].getTileContent();
+    }*/
+    public Tile.TileContent whoTopLeft(int id){
+        if(whoLeft(id)== Tile.TileContent.BORDER || whoTop(id)== Tile.TileContent.BORDER) {
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id+this.n-1].getTileContent();
+    }
+    public Tile.TileContent whoTopRight(int id){
+        if(whoRight(id)==Tile.TileContent.BORDER || whoTop(id)== Tile.TileContent.BORDER){
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id+this.n+1].getTileContent();
+    }
+    /*public Tile.TileContent whoBottomLeft(int id){
+        if(whoLeft(id)== Tile.TileContent.BORDER || whoBottom(id)== Tile.TileContent.BORDER){
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id-n-1].getTileContent();
+    }*/
+    /*public Tile.TileContent whoBottomRight(int id){
+        if(whoBottom(id)== Tile.TileContent.BORDER || whoRight(id)== Tile.TileContent.BORDER){
+            return Tile.TileContent.BORDER;
+        }
+        return this.grid[id-n+1].getTileContent();
+    }*/
+
+    public void setTile(int id, Tile.TileContent tileContent){
+        if(tileContent != Tile.TileContent.BORDER){
+            this.grid[id].setTileContent(tileContent);
+        }
+    }
 }

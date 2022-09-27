@@ -58,14 +58,20 @@ public class MenuController {
     private GridPane gameGrid;
 
     @FXML
-    private ImageView tmpimgview;
+    private Label instructionLabel;
+
 
     GameSettings gameSettings;
 
     Map<String,ImageView> imageViewMap = new HashMap<>();
 
+    Map<String,Button> buttonMap = new HashMap<>();
+
     Image oImage = new Image("/Pictures/o.png");
     Image xImage = new Image("/Pictures/x.png");
+
+    private boolean isGameOver = false;
+
 
     @FXML
     public void initialize(){
@@ -74,35 +80,33 @@ public class MenuController {
         SpinnerValueFactory<Integer>spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
         gridSizeSpinner.setValueFactory(spinnerValueFactory);
         gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, 3);
+        instructionLabel.setText("Your turn. You are 'X'.");
 
-        tmpimgview.setOnMouseClicked(new EventHandler<>(){
-
-            @Override
-            public void handle(MouseEvent event) {
-                tmpimgview.setImage(oImage);
-            }
-        });
     }
 
     @FXML
     private void newGameAction(){
         menuPane.setVisible(false);
         gamePane.setVisible(true);
+        gamePane.setDisable(false);
         gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, (Integer) gridSizeSpinner.getValue());
         Grid grid = new Grid(gameSettings.getGridSize());
         setUpGrid();
 
-        for(String string : imageViewMap.keySet()){
-            imageViewMap.get(string).setOnMouseClicked(new EventHandler<>(){
-
-                @Override
-                public void handle(MouseEvent event) {
-                    imageViewMap.get(string).setImage(xImage);
+        Platform.runLater(()->{
+            gameGrid.getScene().setOnMouseClicked(e -> {
+                if(!isGameOver){
+                    System.out.println("You clicked");
+                    instructionLabel.setText("Your turn. You are 'X'.");
+                    System.out.println(e.getSource());
                 }
             });
-        }
-
-
+            /*gameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {//works, looking for a better solution
+                double x = e.getX();
+                double y = e.getY();
+                System.out.println("[" + x + ", " + y + "]");
+            });*/
+        });
 
 
     }
@@ -179,7 +183,7 @@ public class MenuController {
 
     private void setUpGrid(){
 
-        int maxSize = 600;
+        int maxSize = 500;
         int cellSize = maxSize/gameSettings.getGridSize();
 
         gameGrid.getRowConstraints().set(0,new RowConstraints(cellSize));
@@ -199,18 +203,42 @@ public class MenuController {
                 imageView.setFitWidth(cellSize);
                 imageView.setFitHeight(cellSize);
                 imageViewMap.put(ivKey,imageView);
-
+                gameGrid.add(imageViewMap.get(ivKey),j,i);//(elem, col, row)
                 //TEMPORARY CODE STARTS //DOESNT WORK FOR SOME REASON
                 imageViewMap.get(ivKey).setPickOnBounds(true);
-                imageViewMap.get(ivKey).setOnMouseClicked(new EventHandler<>(){
+                imageViewMap.get(ivKey).setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
-                    public void handle(MouseEvent event) {
+                    public void handle(MouseEvent mouseEvent) {
+
                         imageViewMap.get(ivKey).setImage(xImage);
                     }
                 });
-                //TEMPORARY CODE END
 
-                gameGrid.add(imageViewMap.get(ivKey),j,i);//(elem, col, row)
+                /*String btnKey = String.format("btn%d",num);
+                Button button = new Button();
+                button.setMinWidth(cellSize);
+                button.setMaxWidth(cellSize);
+                button.setMinHeight(cellSize);
+                button.setMaxHeight(cellSize);
+                buttonMap.put(btnKey,button);
+                gameGrid.add(buttonMap.get(btnKey),j,i);
+                buttonMap.get(btnKey).setText("EMPTY");
+                buttonMap.get(btnKey).setDisable(false);
+                buttonMap.get(btnKey).setVisible(true);
+                buttonMap.get(btnKey).setViewOrder(0);
+                buttonMap.get(btnKey).setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        System.out.println("Click");
+                    }
+                });*/
+                /*buttonMap.get(btnKey).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        System.out.println("Click");
+                    }
+                });*/
+                //TEMPORARY CODE END
                 num++;
                 //Logger.info(String.format("ImageView added to the grid at [%d,%d]",j,i));
             }
