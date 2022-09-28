@@ -1,7 +1,11 @@
 package Model;
 
+import Controller.GameSettings;
+import Controller.MenuController;
 import javafx.util.Pair;
 import org.tinylog.Logger;
+
+import java.util.Random;
 
 public class Grid {
     private int n;
@@ -147,8 +151,29 @@ public class Grid {
     }*/
 
     public void setTile(int id, Tile.TileContent tileContent){
-        if(tileContent != Tile.TileContent.BORDER){
+        if(tileContent != Tile.TileContent.BORDER && this.grid[id].getTileContent()== Tile.TileContent.EMPTY){
             this.grid[id].setTileContent(tileContent);
+            Logger.info("this.grid have changed");
+            System.out.println("this.grid have changed");
+            System.out.println(this);
         }
+    }
+
+    public Integer computerMove(GameSettings gameSettings){
+        switch (gameSettings.getDifficultyLevel()){
+            case EASY : return easyMove();
+            default : return n;//TODO
+        }
+    }
+
+    private Integer easyMove(){
+        Random random = new Random();
+        int r = random.nextInt((this.n*this.n)-1);
+        while(this.grid[r].getTileContent()!= Tile.TileContent.EMPTY){
+            r = random.nextInt((this.n*this.n)-1);
+        }
+        setTile(r, Tile.TileContent.O);
+        return r;
+        //need to send back info to change the image
     }
 }

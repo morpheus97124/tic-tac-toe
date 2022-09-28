@@ -2,6 +2,7 @@ package Controller;
 
 
 import Model.Grid;
+import Model.Tile;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -72,6 +73,8 @@ public class MenuController {
 
     private boolean isGameOver = false;
 
+    Grid grid = new Grid(3);//TMP
+
 
     @FXML
     public void initialize(){
@@ -90,16 +93,28 @@ public class MenuController {
         gamePane.setVisible(true);
         gamePane.setDisable(false);
         gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, (Integer) gridSizeSpinner.getValue());
-        Grid grid = new Grid(gameSettings.getGridSize());
+        //Grid grid = new Grid(gameSettings.getGridSize());//NOT TMP
+        grid = new Grid(gameSettings.getGridSize());
+
         setUpGrid();
 
         Platform.runLater(()->{
             gameGrid.getScene().setOnMouseClicked(e -> {
-                if(!isGameOver){
-                    System.out.println("You clicked");
-                    instructionLabel.setText("Your turn. You are 'X'.");
+                if(!isGameOver){//Player turn
+
                     System.out.println(e.getSource());
+                    isGameOver = grid.isThereMatch(3);
                 }
+                else{
+                    System.out.println("GAME OVER, YOU WON THE GAME");
+                }
+                //Computer turn
+                instructionLabel.setText("It's my turn. Let me think for a moment....");
+                setCell(grid.computerMove(gameSettings),oImage);
+                //doit(1, Tile.TileContent.O);
+                //setCell(1,oImage);
+
+                instructionLabel.setText("Your turn. You are 'X'.");
             });
             /*gameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {//works, looking for a better solution
                 double x = e.getX();
@@ -204,13 +219,14 @@ public class MenuController {
                 imageView.setFitHeight(cellSize);
                 imageViewMap.put(ivKey,imageView);
                 gameGrid.add(imageViewMap.get(ivKey),j,i);//(elem, col, row)
-                //TEMPORARY CODE STARTS //DOESNT WORK FOR SOME REASON
+                //TEMPORARY CODE STARTS
                 imageViewMap.get(ivKey).setPickOnBounds(true);
                 imageViewMap.get(ivKey).setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-
+                        doit(Integer.parseInt(ivKey.substring(2)), Tile.TileContent.X);
                         imageViewMap.get(ivKey).setImage(xImage);
+                        //System.out.println(mouseEvent.getSource());
                     }
                 });
 
@@ -243,7 +259,7 @@ public class MenuController {
                 //Logger.info(String.format("ImageView added to the grid at [%d,%d]",j,i));
             }
         }
-        setCell(0,oImage);
+        //setCell(0,oImage);
         /*setCell(1,xImage);
         setCell(2,oImage);
         setCell(3,xImage);
@@ -252,6 +268,10 @@ public class MenuController {
         setCell(6,oImage);
         setCell(7,xImage);*/
 
+    }
+
+    public void doit(int id, Tile.TileContent tileContent){
+        grid.setTile(id, tileContent);
     }
 
 }
