@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import javafx.util.Pair;
 import org.tinylog.Logger;
@@ -24,6 +26,10 @@ import java.util.Map;
 
 
 public class MenuController {
+
+    final int gameGridMax = 500;
+
+    int cellSize;
 
     @FXML
     private Pane menuPane;
@@ -61,6 +67,12 @@ public class MenuController {
     @FXML
     private Label instructionLabel;
 
+    @FXML
+    private Spinner streakNumberSpinner;
+
+    @FXML
+    private Label infoLabel;
+
 
     GameSettings gameSettings;
 
@@ -75,14 +87,20 @@ public class MenuController {
 
     Grid grid = new Grid(3);//TMP
 
+    GameSettings.DifficultyLevel difficultyLevel = GameSettings.DifficultyLevel.EASY;
+
 
     @FXML
     public void initialize(){
         menuPane.setDisable(false);
         gamePane.setDisable(true);
-        SpinnerValueFactory<Integer>spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(3,20,3);
-        gridSizeSpinner.setValueFactory(spinnerValueFactory);
-        gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, 3);
+        SpinnerValueFactory<Integer>gridSizeSpinnerValueFactory = new SpinnerValueFactory.
+                IntegerSpinnerValueFactory(3,20,3);
+        SpinnerValueFactory<Integer>streakNumberSpinnerValueFactory = new SpinnerValueFactory.
+                IntegerSpinnerValueFactory(3,10,3);
+        gridSizeSpinner.setValueFactory(gridSizeSpinnerValueFactory);
+        streakNumberSpinner.setValueFactory(streakNumberSpinnerValueFactory);
+        gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, 3,3);
         instructionLabel.setText("Your turn. You are 'X'.");
 
     }
@@ -92,7 +110,9 @@ public class MenuController {
         menuPane.setVisible(false);
         gamePane.setVisible(true);
         gamePane.setDisable(false);
-        gameSettings = new GameSettings(GameSettings.DifficultyLevel.EASY, (Integer) gridSizeSpinner.getValue());
+        gameSettings = new GameSettings(difficultyLevel,
+                (Integer) gridSizeSpinner.getValue(),
+                (Integer) streakNumberSpinner.getValue());
         //Grid grid = new Grid(gameSettings.getGridSize());//NOT TMP
         grid = new Grid(gameSettings.getGridSize());
 
@@ -100,29 +120,30 @@ public class MenuController {
 
         Platform.runLater(()->{
             gameGrid.getScene().setOnMouseClicked(e -> {
-                if(!isGameOver){//Player turn
-
+                /*if(!isGameOver){//Player turn
                     System.out.println(e.getSource());
                     isGameOver = grid.isThereMatch(3);
                 }
                 else{
-                    System.out.println("GAME OVER, YOU WON THE GAME");
+                    System.out.println("GAME OVER, YOU WON THE GAME" + isGameOver);
+                    instructionLabel.setText("GAME OVER, YOU WON THE GAME" + isGameOver);
                 }
-                //Computer turn
-                instructionLabel.setText("It's my turn. Let me think for a moment....");
-                setCell(grid.computerMove(gameSettings),oImage);
-                //doit(1, Tile.TileContent.O);
-                //setCell(1,oImage);
+                if(!isGameOver){
+                    //Computer turn
+                    instructionLabel.setText("It's my turn. Let me think for a moment...." + isGameOver);
+                    setCell(grid.computerMove(gameSettings),oImage);
+                    //doit(1, Tile.TileContent.O);
+                    //setCell(1,oImage);
+                    instructionLabel.setText("Your turn. You are 'X'." + isGameOver);
+                }*/
 
-                instructionLabel.setText("Your turn. You are 'X'.");
             });
-            /*gameGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {//works, looking for a better solution
-                double x = e.getX();
-                double y = e.getY();
-                System.out.println("[" + x + ", " + y + "]");
-            });*/
         });
-
+        infoLabel.setText(String.format("Grid size : %d*%d\nTarget streak : %d\nDifficulty : %s",
+                gameSettings.getGridSize(),
+                gameSettings.getGridSize(),
+                gameSettings.getStreakNumber(),
+                gameSettings.getDifficultyLevel()));
 
     }
 
@@ -159,7 +180,7 @@ public class MenuController {
 
     @FXML
     private void easyAction(){
-        gameSettings.setDifficultyLevel(GameSettings.DifficultyLevel.EASY);
+        difficultyLevel = GameSettings.DifficultyLevel.EASY;
         easyButton.setDisable(true);
         mediumButton.setDisable(false);
         hardButton.setDisable(false);
@@ -167,7 +188,7 @@ public class MenuController {
 
     @FXML
     private void mediumAction(){
-        gameSettings.setDifficultyLevel(GameSettings.DifficultyLevel.MEDIUM);
+        difficultyLevel = GameSettings.DifficultyLevel.MEDIUM;
         easyButton.setDisable(false);
         mediumButton.setDisable(true);
         hardButton.setDisable(false);
@@ -175,7 +196,7 @@ public class MenuController {
 
     @FXML
     private void hardAction(){
-        gameSettings.setDifficultyLevel(GameSettings.DifficultyLevel.HARD);
+        difficultyLevel = GameSettings.DifficultyLevel.HARD;
         easyButton.setDisable(false);
         mediumButton.setDisable(false);
         hardButton.setDisable(true);
@@ -184,7 +205,7 @@ public class MenuController {
 
     public void setCell(int id, Image image){
         Pair<Integer,Integer> coordinate = Grid.convertIdToCoordinate(id,gameSettings.getGridSize());
-        System.out.println(coordinate);
+        //System.out.println(coordinate);
         int y = coordinate.getKey();
         int x = coordinate.getValue();
         String nameString = String.format("iv%d",id);
@@ -198,8 +219,7 @@ public class MenuController {
 
     private void setUpGrid(){
 
-        int maxSize = 500;
-        int cellSize = maxSize/gameSettings.getGridSize();
+        cellSize = gameGridMax/gameSettings.getGridSize();
 
         gameGrid.getRowConstraints().set(0,new RowConstraints(cellSize));
         for(int i=0;i<gameSettings.getGridSize()-1;i++){
@@ -219,59 +239,73 @@ public class MenuController {
                 imageView.setFitHeight(cellSize);
                 imageViewMap.put(ivKey,imageView);
                 gameGrid.add(imageViewMap.get(ivKey),j,i);//(elem, col, row)
-                //TEMPORARY CODE STARTS
+
                 imageViewMap.get(ivKey).setPickOnBounds(true);
                 imageViewMap.get(ivKey).setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         doit(Integer.parseInt(ivKey.substring(2)), Tile.TileContent.X);
-                        imageViewMap.get(ivKey).setImage(xImage);
+                        if(imageViewMap.get(ivKey).getImage()==null && !isGameOver){
+                            Platform.runLater(() -> {
+                                //imageViewMap.get(ivKey).setImage(xImage);
+                            });
+
+                        }
                         //System.out.println(mouseEvent.getSource());
                     }
                 });
-
-                /*String btnKey = String.format("btn%d",num);
-                Button button = new Button();
-                button.setMinWidth(cellSize);
-                button.setMaxWidth(cellSize);
-                button.setMinHeight(cellSize);
-                button.setMaxHeight(cellSize);
-                buttonMap.put(btnKey,button);
-                gameGrid.add(buttonMap.get(btnKey),j,i);
-                buttonMap.get(btnKey).setText("EMPTY");
-                buttonMap.get(btnKey).setDisable(false);
-                buttonMap.get(btnKey).setVisible(true);
-                buttonMap.get(btnKey).setViewOrder(0);
-                buttonMap.get(btnKey).setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        System.out.println("Click");
-                    }
-                });*/
-                /*buttonMap.get(btnKey).setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        System.out.println("Click");
-                    }
-                });*/
-                //TEMPORARY CODE END
                 num++;
-                //Logger.info(String.format("ImageView added to the grid at [%d,%d]",j,i));
             }
         }
-        //setCell(0,oImage);
-        /*setCell(1,xImage);
-        setCell(2,oImage);
-        setCell(3,xImage);
-        setCell(4,oImage);
-        setCell(5,xImage);
-        setCell(6,oImage);
-        setCell(7,xImage);*/
-
     }
 
     public void doit(int id, Tile.TileContent tileContent){
-        grid.setTile(id, tileContent);
+
+        boolean opponentCanPick = true;
+        if(!isGameOver && imageViewMap.get(String.format("iv%d",id)).getImage()!=oImage &&
+                imageViewMap.get(String.format("iv%d",id)).getImage()!=xImage){//Player turn
+            grid.setTile(id, tileContent);
+            //System.out.println(e.getSource());
+            isGameOver = grid.isThereMatch(gameSettings.getStreakNumber());
+            //System.out.println("isGameOver = " + isGameOver);
+            setCell(id,xImage);
+
+            checkForWinner();
+            if(!isGameOver){
+
+                //Computer turn
+                instructionLabel.setText("It's my turn. Let me think for a moment...." + isGameOver);
+                setCell(grid.computerMove(gameSettings),oImage);
+                instructionLabel.setText("Your turn. You are 'X'." + isGameOver);
+                isGameOver = grid.isThereMatch(gameSettings.getStreakNumber());
+            }
+            checkForWinner();
+
+        }
+
+
+    }
+    private void checkForWinner(){
+        if(isGameOver){
+            if(grid.getWinningTile()== Tile.TileContent.X){
+                instructionLabel.setText("Congratulations! You won!");
+            }
+            else if(grid.getWinningTile()== Tile.TileContent.O){
+                instructionLabel.setText("Oh no... Maybe next time...");
+            }
+
+            int startX = this.grid.winLocation.getWinlocation()[0]*(cellSize)+cellSize/2;
+            int startY = this.grid.winLocation.getWinlocation()[1]*(cellSize)+cellSize/2;
+            int endX = this.grid.winLocation.getWinlocation()[2]*(cellSize)+cellSize/2;
+            int endY = this.grid.winLocation.getWinlocation()[3]*(cellSize)+cellSize/2;
+            System.out.println(String.format("startX : %d\nstartY : %d\nendX : %d\nendY : %d",startX,startY,endX,endY));
+            Line line = new Line(startX,startY,endX,endY);
+            line.setStroke(Color.RED);
+            line.setStrokeWidth(5.0);
+            gamePane.getChildren().add(line);
+            gameGrid.setDisable(true);
+        }
+        
     }
 
 }

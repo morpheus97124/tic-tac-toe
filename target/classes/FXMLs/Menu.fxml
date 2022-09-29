@@ -47,22 +47,46 @@
                <children>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label fx:id="gridSizeLabel" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" text="Grid size:" textAlignment="CENTER">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
+                        <VBox>
+                           <children>
+                              <Label fx:id="gridSizeLabel" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" text="Grid size:" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Spinner fx:id="gridSizeSpinner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Spinner>
+                           </children>
                            <HBox.margin>
-                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                              <Insets left="250.0" />
                            </HBox.margin>
-                        </Label>
-                        <Spinner fx:id="gridSizeSpinner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
+                        </VBox>
+                        <VBox>
                            <HBox.margin>
-                              <Insets bottom="75.0" left="50.0" right="50.0" top="75.0" />
+                              <Insets left="100.0" />
                            </HBox.margin>
-                        </Spinner>
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" text="Streak:">
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Spinner fx:id="streakNumberSpinner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Spinner>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
@@ -101,6 +125,11 @@
               </rowConstraints>
             </GridPane>
             <Label fx:id="instructionLabel" layoutX="50.0" layoutY="525.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" />
+            <Button fx:id="restartAction" layoutX="525.0" layoutY="575.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Restart?" />
+            <Label fx:id="infoLabel" layoutX="500.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </padding></Label>
          </children>
       </Pane>
    </children>
