@@ -1,263 +1,138 @@
-2022-09-29 21:28:08 [JavaFX Application Thread] JavaFXApp.start()
+2022-09-30 01:48:00 [JavaFX Application Thread] JavaFXApp.start()
 INFO: The application has launched
-2022-09-29 21:28:08 [JavaFX Application Thread] Model.Grid.<init>()
-INFO: Grid is created
-Size of the grid is: 3x3
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-
-2022-09-29 21:28:09 [JavaFX Application Thread] Controller.MenuController.settingsAction()
+2022-09-30 01:48:04 [JavaFX Application Thread] Controller.MenuController.settingsAction()
 INFO: The player has pressed the settings button
-2022-09-29 21:28:13 [JavaFX Application Thread] Controller.MenuController.backAction()
+2022-09-30 01:48:12 [JavaFX Application Thread] Controller.MenuController.backAction()
 INFO: The player has returned to the main menu
-2022-09-29 21:28:13 [JavaFX Application Thread] Controller.MenuController.backAction()
+2022-09-30 01:48:12 [JavaFX Application Thread] Controller.MenuController.backAction()
 INFO: New game settings are: 
 Game difficulty EASY
 Grid size: 3x3
-2022-09-29 21:28:13 [JavaFX Application Thread] Controller.MenuController.backAction()
+2022-09-30 01:48:12 [JavaFX Application Thread] Controller.MenuController.backAction()
 INFO: The player has returned to the main menu
-2022-09-29 21:28:13 [JavaFX Application Thread] Controller.MenuController.backAction()
+2022-09-30 01:48:12 [JavaFX Application Thread] Controller.MenuController.backAction()
 INFO: New game settings are: 
 Game difficulty EASY
-Grid size: 10x10
-2022-09-29 21:28:14 [JavaFX Application Thread] Model.Grid.<init>()
-INFO: Grid is created
-Size of the grid is: 10x10
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-Content: EMPTY
-
-2022-09-29 21:28:14 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:14 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [7,6]
-2022-09-29 21:28:14 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:14 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [5,6]
-2022-09-29 21:28:15 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:15 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [6,6]
-2022-09-29 21:28:15 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:15 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [4,6]
-2022-09-29 21:28:16 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:16 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [3,6]
-2022-09-29 21:28:16 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:16 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [4,5]
-2022-09-29 21:28:17 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:17 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [4,4]
-2022-09-29 21:28:17 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:17 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [4,7]
-2022-09-29 21:28:18 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:18 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [4,8]
-2022-09-29 21:28:18 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:18 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [2,6]
-2022-09-29 21:28:19 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:19 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [1,6]
-2022-09-29 21:28:19 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:19 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [6,5]
-2022-09-29 21:28:20 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:20 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [7,4]
-2022-09-29 21:28:20 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:20 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [3,8]
-2022-09-29 21:28:22 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:22 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [2,9]
-2022-09-29 21:28:22 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:22 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [5,7]
-2022-09-29 21:28:23 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:23 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [6,7]
-2022-09-29 21:28:23 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:23 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [0,7]
-2022-09-29 21:28:24 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:24 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [0,8]
-2022-09-29 21:28:24 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:24 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [1,7]
-2022-09-29 21:28:25 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:25 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [2,7]
-2022-09-29 21:28:25 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:25 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [6,8]
-2022-09-29 21:28:29 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:29 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [7,9]
-2022-09-29 21:28:29 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:29 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [7,8]
-2022-09-29 21:28:34 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:34 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [5,8]
-2022-09-29 21:28:34 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:34 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [8,8]
-2022-09-29 21:28:35 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:35 [JavaFX Application Thread] Controller.MenuController.setCell()
+Grid size: 20x20
+2022-09-30 01:48:13 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[7=8] with id-248 has been set to X
+2022-09-30 01:48:13 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [8,7]
+2022-09-30 01:48:13 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[19=0] with id-0 has been set to O
+2022-09-30 01:48:13 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [0,19]
+2022-09-30 01:48:14 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[8=9] with id-229 has been set to X
+2022-09-30 01:48:14 [JavaFX Application Thread] Controller.MenuController.setCell()
 INFO: Cell has been updated at [9,8]
-2022-09-29 21:28:35 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:35 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [2,8]
-2022-09-29 21:28:36 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:36 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [1,8]
-2022-09-29 21:28:36 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:36 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [3,5]
-2022-09-29 21:28:41 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:41 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [2,5]
-2022-09-29 21:28:41 [JavaFX Application Thread] Model.Grid.setTile()
-INFO: this.grid have changed
-2022-09-29 21:28:41 [JavaFX Application Thread] Controller.MenuController.setCell()
-INFO: Cell has been updated at [2,4]
-2022-09-29 21:29:08 [JavaFX Application Thread] JavaFXApp.stop()
+2022-09-30 01:48:14 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[19=1] with id-1 has been set to O
+2022-09-30 01:48:14 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [1,19]
+2022-09-30 01:48:15 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[19=2] with id-2 has been set to X
+2022-09-30 01:48:15 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [2,19]
+2022-09-30 01:48:15 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[0=1] with id-381 has been set to O
+2022-09-30 01:48:15 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [1,0]
+2022-09-30 01:48:16 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[1=2] with id-362 has been set to X
+2022-09-30 01:48:16 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [2,1]
+2022-09-30 01:48:16 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[2=1] with id-341 has been set to O
+2022-09-30 01:48:16 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [1,2]
+2022-09-30 01:48:17 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[3=3] with id-323 has been set to X
+2022-09-30 01:48:17 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [3,3]
+2022-09-30 01:48:17 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[3=5] with id-325 has been set to O
+2022-09-30 01:48:17 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [5,3]
+2022-09-30 01:48:19 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[6=7] with id-267 has been set to X
+2022-09-30 01:48:19 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [7,6]
+2022-09-30 01:48:19 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[4=6] with id-306 has been set to O
+2022-09-30 01:48:19 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [6,4]
+2022-09-30 01:48:19 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[5=6] with id-286 has been set to X
+2022-09-30 01:48:19 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [6,5]
+2022-09-30 01:48:19 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[5=7] with id-287 has been set to O
+2022-09-30 01:48:19 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [7,5]
+2022-09-30 01:48:20 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[6=8] with id-268 has been set to X
+2022-09-30 01:48:20 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [8,6]
+2022-09-30 01:48:20 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[5=5] with id-285 has been set to O
+2022-09-30 01:48:20 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [5,5]
+2022-09-30 01:48:22 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[4=5] with id-305 has been set to X
+2022-09-30 01:48:22 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [5,4]
+2022-09-30 01:48:22 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[6=5] with id-265 has been set to O
+2022-09-30 01:48:22 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [5,6]
+2022-09-30 01:48:23 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[3=4] with id-324 has been set to X
+2022-09-30 01:48:23 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [4,3]
+2022-09-30 01:48:23 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[7=6] with id-246 has been set to O
+2022-09-30 01:48:23 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [6,7]
+2022-09-30 01:48:25 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[9=10] with id-210 has been set to X
+2022-09-30 01:48:25 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [10,9]
+2022-09-30 01:48:25 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[8=7] with id-227 has been set to O
+2022-09-30 01:48:25 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [7,8]
+2022-09-30 01:48:26 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[10=11] with id-191 has been set to X
+2022-09-30 01:48:26 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [11,10]
+2022-09-30 01:48:26 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[9=8] with id-208 has been set to O
+2022-09-30 01:48:26 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [8,9]
+2022-09-30 01:48:26 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[11=12] with id-172 has been set to X
+2022-09-30 01:48:26 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [12,11]
+2022-09-30 01:48:26 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[10=9] with id-189 has been set to O
+2022-09-30 01:48:26 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [9,10]
+2022-09-30 01:48:27 [JavaFX Application Thread] Model.Grid.setTile()
+INFO: Tile[12=13] with id-153 has been set to X
+2022-09-30 01:48:27 [JavaFX Application Thread] Model.Grid$WinLocation.<init>()
+INFO: WinLocation has been set to:
+startX : 13
+startY : 12
+endX : 4
+endY : 3
+2022-09-30 01:48:27 [JavaFX Application Thread] Controller.MenuController.setCell()
+INFO: Cell has been updated at [13,12]
+2022-09-30 01:48:27 [JavaFX Application Thread] Controller.MenuController.drawLine()
+INFO: Drew line at:
+startX : 337
+startY : 312
+endX : 112
+endY : 87
+2022-09-30 01:48:29 [JavaFX Application Thread] JavaFXApp.stop()
 INFO: The player has quit the game

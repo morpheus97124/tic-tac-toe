@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Class for holding the Tile objects, representing the cells of the game table.
+ */
 public class Tile {
     public enum TileContent{
         EMPTY, X, O, BORDER;

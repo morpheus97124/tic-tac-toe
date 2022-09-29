@@ -1,17 +1,21 @@
 package Model;
 
 import Controller.GameSettings;
-import Controller.MenuController;
 import javafx.util.Pair;
 import org.tinylog.Logger;
-
-import java.lang.reflect.Array;
 import java.util.Random;
 
+/**
+ * Object of the game. Contains the game grid and it's functions.
+ */
 public class Grid {
     private int n;
     private Tile.TileContent winningTile = Tile.TileContent.EMPTY;
     Tile[] grid;
+
+    /**
+     * Nested class needed to send information back about the place of the winning red line.
+     */
     public class WinLocation{
         private int startX;
         private int startY;
@@ -23,9 +27,18 @@ public class Grid {
             this.startY = coordinates[1];
             this.endX = coordinates[2];
             this.endY = coordinates[3];
-            System.out.println(String.format("startX : %d\nstartY : %d\nendX : %d\nendY : %d",coordinates[0],coordinates[1],coordinates[2],coordinates[3]));
+            Logger.info(String.format("WinLocation has been set to:\nstartX : %d\nstartY : %d\nendX : %d\nendY : %d",coordinates[0],coordinates[1],coordinates[2],coordinates[3]));
         }
-        public static Integer[] doCalc(int id, int n, int target, Direction direction){
+
+        /**
+         * Calculates info for the constuctor of the {@link WinLocation} class.
+         * @param id
+         * @param n
+         * @param target
+         * @param direction
+         * @return Integer[]
+         */
+        public static Integer[] winLocationCalculate(int id, int n, int target, Direction direction){
             int endX = convertIdToCoordinate(id, n).getValue();
             int endY = convertIdToCoordinate(id, n).getKey();
             int startX;
@@ -59,7 +72,7 @@ public class Grid {
             HORIZONTAL, VERTICAL, DEGREE45, DEGREE135;
         }
 
-        public Integer[] getWinlocation(){
+        public Integer[] getWinLocation(){
             Integer[] winLocation = new Integer[] {this.startX, this.startY, this.endX, this.endY};
             return winLocation;
         }
@@ -73,7 +86,7 @@ public class Grid {
         for(int i=0;i<n*n;i++){
             grid[i] = new Tile(Tile.TileContent.EMPTY);
         }
-        Logger.info("Grid is created\n" + this);
+        //Logger.info("Grid is created\n" + this);
     }
 
     public static Pair<Integer,Integer> convertIdToCoordinate(int id, int n){
@@ -83,11 +96,11 @@ public class Grid {
         return coordinate;
     }
 
-    public static int convertCoordinateToId(Pair<Integer,Integer> coordinate,int n){
+    /*public static int convertCoordinateToId(Pair<Integer,Integer> coordinate,int n){
         int x = coordinate.getValue();
         int y = coordinate.getKey();
         return (n-1-y)*n+x;
-    }
+    }*/
     
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -98,6 +111,11 @@ public class Grid {
         return sb.toString();
     }
 
+    /**
+     * Inspects the Tile[] and returns true if there is a {@param targer} long streak in it.
+     * @param target
+     * @return
+     */
     public boolean isThereMatch(int target){
         for(int i = 0; i < this.grid.length;i++){
             Tile.TileContent currentTileContent = Tile.TileContent.EMPTY;
@@ -106,12 +124,12 @@ public class Grid {
             }
             else if(this.grid[i].getTileContent() == Tile.TileContent.X){
                 currentTileContent = Tile.TileContent.X;
+
             }
             else{
                 continue;
             }
-            System.out.println(currentTileContent);
-            //vízszintesen
+            //horizontal
             int count = 1;
             int iCopy=i;
             while(whoRight(iCopy)== currentTileContent){
@@ -119,7 +137,7 @@ public class Grid {
                 iCopy++;
                 if(count >= target){
                     setWinningTile(currentTileContent);
-                    winLocation = new WinLocation(WinLocation.doCalc(iCopy, this.n, target, WinLocation.Direction.HORIZONTAL));
+                    winLocation = new WinLocation(WinLocation.winLocationCalculate(iCopy, this.n, target, WinLocation.Direction.HORIZONTAL));
                     return true;
                 }
             }
@@ -131,7 +149,7 @@ public class Grid {
                 iCopy+=this.n;
                 if(count >= target){
                     setWinningTile(currentTileContent);
-                    winLocation = new WinLocation(WinLocation.doCalc(iCopy, this.n, target, WinLocation.Direction.VERTICAL));
+                    winLocation = new WinLocation(WinLocation.winLocationCalculate(iCopy, this.n, target, WinLocation.Direction.VERTICAL));
                     return true;
                 }
             }
@@ -143,7 +161,7 @@ public class Grid {
                 iCopy+=this.n-1;
                 if(count >= target){
                     setWinningTile(currentTileContent);
-                    winLocation = new WinLocation(WinLocation.doCalc(iCopy, this.n, target, WinLocation.Direction.DEGREE135));
+                    winLocation = new WinLocation(WinLocation.winLocationCalculate(iCopy, this.n, target, WinLocation.Direction.DEGREE135));
                     return true;
                 }
             }
@@ -155,10 +173,13 @@ public class Grid {
                 iCopy+=this.n+1;
                 if(count >= target){
                     setWinningTile(currentTileContent);
-                    winLocation = new WinLocation(WinLocation.doCalc(iCopy, this.n, target, WinLocation.Direction.DEGREE45));
+                    winLocation = new WinLocation(WinLocation.winLocationCalculate(iCopy, this.n, target, WinLocation.Direction.DEGREE45));
                     return true;
                 }
             }
+        }
+        if(howMany(Tile.TileContent.EMPTY) == 0){
+            return true;
         }
         return false;
     }
@@ -217,23 +238,23 @@ public class Grid {
     public void setTile(int id, Tile.TileContent tileContent){
         if(tileContent != Tile.TileContent.BORDER && this.grid[id].getTileContent()== Tile.TileContent.EMPTY){
             this.grid[id].setTileContent(tileContent);
-            Logger.info("this.grid have changed");
-            System.out.println("this.grid have changed");
-            //System.out.println(this);
-            System.out.println("Tile[" + convertIdToCoordinate(id,this.n) + "] with id-" + id + " has been set to "+ tileContent);
-            //whoIsAroundMe(id);
+            Logger.info("Tile[" + convertIdToCoordinate(id,this.n) + "] with id-" + id + " has been set to "+ tileContent);
         }
     }
 
     public Integer computerMove(GameSettings gameSettings){
-        System.out.println(gameSettings.getDifficultyLevel());
         switch (gameSettings.getDifficultyLevel()){
             case EASY : return easyMove();
             case MEDIUM : return mediumMove();
-            default : return n;//TODO
+            case HARD : return hardMove(gameSettings.getStreakNumber());
+            default : return 0;
         }
     }
 
+    /**
+     * Randomly picks a Tile
+     * @return
+     */
     private Integer easyMove(){
         Random random = new Random();
         int r = random.nextInt((this.n*this.n)-1);
@@ -245,8 +266,11 @@ public class Grid {
         //need to send back info to change the image
     }
 
+    /**
+     * Inspects what move would get the longest streak.
+     * @return
+     */
     private Integer mediumMove(){
-        //System.out.println("MEDIUM MOVE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         int maxStreak = 0;
         int tmpStreak = 1;
         int maxId = 0;
@@ -254,20 +278,14 @@ public class Grid {
             return easyMove();
         }
         for (int i = 0;i < this.grid.length;i++){
-            System.out.println("i = " + i + "------------------------------------------------");
-            if(this.grid[i].getTileContent() == Tile.TileContent.O){//bele se megy
+            if(this.grid[i].getTileContent() == Tile.TileContent.O){
                 int iCopy = i;
                 while(whoRight(iCopy)== Tile.TileContent.O){//check for horizontal
-                    System.out.println("whoRightWhileStart iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                     tmpStreak++;
                     iCopy++;
-                    System.out.println("whoRightWhileEnd iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                 }
                 if(maxStreak < tmpStreak) {
-                    System.out.println("whoRightIfStart iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
-                    whoIsAroundMe(iCopy);
                     if (whoRight(iCopy) == Tile.TileContent.EMPTY) {
-                        System.out.println("whoRightIfIfStart iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                         maxStreak = tmpStreak;
                         maxId = iCopy + 1;
                     }
@@ -280,7 +298,6 @@ public class Grid {
                 iCopy = i;
 
                 while(whoTop(iCopy)== Tile.TileContent.O){//check for vertical
-                    System.out.println("whoTopWhile iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                     tmpStreak++;
                     iCopy+=this.n;
                 }
@@ -297,7 +314,6 @@ public class Grid {
                 tmpStreak = 1;
                 iCopy = i;
                 while(whoTopLeft(iCopy)== Tile.TileContent.O){//check for \
-                    System.out.println("whoTopLeftWhile iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                     tmpStreak++;
                     iCopy+=(this.n-1);
                 }
@@ -313,22 +329,18 @@ public class Grid {
                 }
                 tmpStreak = 1;
                 iCopy = i;
-                while(whoTopRight(iCopy)== Tile.TileContent.O){//check for /x0x0
-                    System.out.println("whoTopRightWhileStart iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
+                while(whoTopRight(iCopy)== Tile.TileContent.O){//check for /
                     tmpStreak++;
                     iCopy+=(this.n+1);
-                    System.out.println("whoTopRightWhileEnd iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
 
                 }
                 if(maxStreak < tmpStreak) {
 
                     if (whoTopRight(iCopy) == Tile.TileContent.EMPTY) {
-                        System.out.println("whoTopRightIfIf iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                         maxStreak = tmpStreak;
                         maxId = iCopy + this.n + 1;
                     }
                     else if (whoBottomLeft(iCopy - (tmpStreak-1)*this.n -(tmpStreak-1)) == Tile.TileContent.EMPTY) {
-                        System.out.println("whoTopRightIfElseif iCopy : " + iCopy + ", tmpStreak : " + tmpStreak + " maxId : " + maxId);
                         maxStreak = tmpStreak;
                         maxId = iCopy - (tmpStreak*this.n) - tmpStreak;
                     }
@@ -343,6 +355,154 @@ public class Grid {
             return easyMove();
         }
     }
+
+    /**
+     * Discards options when a move would be inoptimal due to not having enough room to get a {@param target} long streak.
+     * @param target
+     * @return
+     */
+    private Integer hardMove(int target){
+        int maxStreak = 0;
+        int tmpStreak = 1;
+        int potential1 = 0;
+        int potential2 = 0;
+        int maxId = 0;
+        int score = 0;
+        if (howMany(Tile.TileContent.EMPTY) == 0) {
+            return easyMove();
+        }
+        for (int i = 0;i < this.grid.length;i++){
+            if(this.grid[i].getTileContent() == Tile.TileContent.O){
+                int iCopy = i;
+                while(whoLeft(iCopy)== Tile.TileContent.EMPTY){
+                    potential1++;
+                    iCopy--;
+                }
+                iCopy = i;
+                while(whoRight(iCopy)== Tile.TileContent.O){//check for horizontal
+                    tmpStreak++;
+                    iCopy++;
+                }
+                while(whoRight(iCopy)== Tile.TileContent.EMPTY){
+                    potential2++;
+                    iCopy++;
+                }
+                iCopy-=potential2;
+                score = (potential1+tmpStreak+potential2);
+                if((score)>=target && maxStreak < tmpStreak){
+                    if (whoRight(iCopy) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy + 1;
+                    }
+                    else if (whoLeft(iCopy - tmpStreak + 1) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy - tmpStreak;
+                    }
+                }
+                tmpStreak = 1;
+                iCopy = i;
+                score = 0;
+                potential1 = 0;
+                potential2 = 0;
+                while(whoBottom(iCopy)== Tile.TileContent.EMPTY){
+                    potential1++;
+                    iCopy-=this.n;
+                }
+                iCopy = i;
+                while(whoTop(iCopy)== Tile.TileContent.O){//check for vertical
+                    tmpStreak++;
+                    iCopy+=this.n;
+                }
+                while(whoTop(iCopy)== Tile.TileContent.EMPTY){
+                    potential2++;
+                    iCopy+=this.n;
+                }
+                iCopy-=potential2;
+                score = (potential1+tmpStreak+potential2);
+                if((score)>=target && maxStreak < tmpStreak) {
+                    if (whoTop(iCopy) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy + this.n;
+                    }
+                    else if (whoBottom((iCopy-(tmpStreak-1)*this.n)) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy - (tmpStreak*this.n);
+                    }
+                }
+                tmpStreak = 1;
+                iCopy = i;
+                score = 0;
+                potential1 = 0;
+                potential2 = 0;
+                while(whoBottomRight(iCopy)== Tile.TileContent.EMPTY){
+                    potential1++;
+                    iCopy-=(this.n+1);
+                }
+                iCopy = i;
+                while(whoTopLeft(iCopy)== Tile.TileContent.O){
+                    tmpStreak++;
+                    iCopy+=(this.n-1);
+                }
+                while(whoTopLeft(iCopy)== Tile.TileContent.EMPTY){
+                    tmpStreak++;
+                    iCopy+=(this.n-1);
+                }
+                iCopy-=(potential2*(this.n+1));
+                score = (potential1+tmpStreak+potential2);
+                if((score)>=target && maxStreak < tmpStreak) {
+                    if (whoTopLeft(iCopy) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy + this.n - 1;
+                    }
+                    else if (whoBottomRight(iCopy - (tmpStreak-1)*this.n+(tmpStreak-1)) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy - (tmpStreak*this.n) + tmpStreak;
+                    }
+                }
+                tmpStreak = 1;
+                iCopy = i;
+                score = 0;
+                potential1 = 0;
+                potential2 = 0;
+                while(whoBottomLeft(iCopy)== Tile.TileContent.O){
+                    potential1++;
+                    iCopy-=(this.n-1);
+                }
+                iCopy = i;
+                while(whoTopRight(iCopy)== Tile.TileContent.O){//check for /
+                    tmpStreak++;
+                    iCopy+=(this.n+1);
+                }
+                while(whoTopRight(iCopy)== Tile.TileContent.EMPTY){//check for /
+                    tmpStreak++;
+                    iCopy+=(this.n+1);
+                }
+                if((score)>=target && maxStreak < tmpStreak) {
+                    if (whoTopRight(iCopy) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy + this.n + 1;
+                    }
+                    else if (whoBottomLeft(iCopy - (tmpStreak-1)*this.n -(tmpStreak-1)) == Tile.TileContent.EMPTY) {
+                        maxStreak = tmpStreak;
+                        maxId = iCopy - (tmpStreak*this.n) - tmpStreak;
+                    }
+                }
+                tmpStreak = 1;
+                iCopy = i;
+                score = 0;
+                potential1 = 0;
+                potential2 = 0;
+            }
+
+        }
+        if(this.grid[maxId].getTileContent() == Tile.TileContent.EMPTY){
+            setTile(maxId, Tile.TileContent.O);
+            return maxId;
+        }
+        else{
+            return mediumMove();
+        }
+    }
     private void whoIsAroundMe(int id){
         System.out.println(String.format("whoLeft -> %s\nwhoTopLeft -> %s\nwhoTop -> %s\nwhoTopRight -> %s\nwhoRight -> %s",whoLeft(id),whoTopLeft(id),whoTop(id),whoTopRight(id),whoRight(id)));
     }
@@ -355,6 +515,11 @@ public class Grid {
         return winningTile;
     }
 
+    /**
+     * Returns how many Tiles are in the Tile[] of the given type.
+     * @param tileContent
+     * @return
+     */
     public Integer howMany(Tile.TileContent tileContent){
         int count = 0;
         for(Tile tile : this.grid){

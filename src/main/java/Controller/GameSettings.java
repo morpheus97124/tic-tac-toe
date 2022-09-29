@@ -1,5 +1,8 @@
 package Controller;
 
+/**
+ * Class for storing info about the customizable aspects of the game
+ */
 public class GameSettings {
     public enum DifficultyLevel{
         EASY, MEDIUM, HARD;
